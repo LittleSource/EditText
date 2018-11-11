@@ -21,16 +21,7 @@ namespace EditText
         {
             if (issetpage())
             {
-                Font font;
-                if(pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont != null)
-                {
-                    font  = new Font(this.toolStripComboBox1.Text, pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont.Size);
-                }
-                else
-                {
-                    font = new Font(this.toolStripComboBox1.Text, getLastFontStyle(pageList[tabControl1.SelectedIndex].RichTextBox1).Size);
-                }
-                pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont = font;
+                ChangeFontSizeOrTypeface(1);
             }
         }
         /// <summary>
@@ -42,16 +33,7 @@ namespace EditText
         {
             if (issetpage())
             {
-                Font font;
-                if (pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont != null)
-                {
-                    font = new Font(this.toolStripComboBox1.Text, FontSize[this.toolStripComboBox2.SelectedIndex], pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont.Style);
-                }
-                else
-                {
-                    font = new Font(this.toolStripComboBox1.Text, FontSize[this.toolStripComboBox2.SelectedIndex], getLastFontStyle(pageList[tabControl1.SelectedIndex].RichTextBox1).Style);
-                }
-                pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont = font;
+                ChangeFontSizeOrTypeface(2);
             }
         }
         /// <summary>
@@ -97,18 +79,79 @@ namespace EditText
             }
         }
         /// <summary>
-        /// 获取选择的最后一个字的字体
+        /// 居左
         /// </summary>
-        /// <param name="richTextBox1"></param>
-        /// <returns>字体</returns>
-        private Font getLastFontStyle(RichTextBox richTextBox1)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton左_Click(object sender, EventArgs e)
         {
-            RichTextBox temprichTextBox1 = new RichTextBox();
-            temprichTextBox1.Text = richTextBox1.SelectedText;
-            temprichTextBox1.Select(richTextBox1.SelectionLength - 1, 1);//wdasdadsa
-            return richTextBox1.SelectionFont;
+            pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionAlignment = HorizontalAlignment.Left;
         }
-        ///<summary>  
+        /// <summary>
+        /// 居中
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton中_Click(object sender, EventArgs e)
+        {
+            pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+        }
+        /// <summary>
+        /// 居右
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toolStripButton右_Click(object sender, EventArgs e)
+        {
+            pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionAlignment = HorizontalAlignment.Right;
+        }
+        /// <summary>
+        /// 改变字号和字体共用函数
+        /// 避免richbox选中字中有两个字字体不一致
+        /// 导致选择到的字体为null，造成空指针异常
+        /// </summary>
+        /// <param name="type">1：字体 2：字号</param>
+        private void ChangeFontSizeOrTypeface(int type)
+        {
+            RichTextBox tempRichTextBox = new RichTextBox();
+            int curRtbStart = pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionStart;
+            int len = pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionLength;
+            int tempRtbStart = 0;
+            Font font = pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont;
+            if (len <= 1 && font != null)
+            {
+                if (type == 1)
+                {
+                    pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont = new Font(this.toolStripComboBox1.Text, pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont.Size);
+                    return;
+                }
+                else
+                {
+                    pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont = new Font(this.toolStripComboBox1.Text, FontSize[this.toolStripComboBox2.SelectedIndex], pageList[tabControl1.SelectedIndex].RichTextBox1.SelectionFont.Style);
+                    return;
+                }
+            }
+            tempRichTextBox.Rtf = pageList[tabControl1.SelectedIndex].RichTextBox1.SelectedRtf;
+            tempRichTextBox.Select(len - 1, 1); //选中副本中的最后一个文字  
+            Font tempFont = (Font)tempRichTextBox.SelectionFont.Clone();//克隆被选中的文字Font，这个tempFont主要是用来判断 
+            for (int i = 0; i < len; i++)
+            {
+                tempRichTextBox.Select(tempRtbStart + i, 1);  //每次选中一个
+                if(type == 1)
+                {
+                    tempRichTextBox.SelectionFont = new Font(this.toolStripComboBox1.Text, tempRichTextBox.SelectionFont.Size);
+                }
+                else
+                {
+                    tempRichTextBox.SelectionFont = new Font(this.toolStripComboBox1.Text, FontSize[this.toolStripComboBox2.SelectedIndex],tempRichTextBox.SelectionFont.Style);
+                }
+            }
+            tempRichTextBox.Select(tempRtbStart, len);
+            pageList[tabControl1.SelectedIndex].RichTextBox1.SelectedRtf = tempRichTextBox.SelectedRtf; //将设置格式后的副本拷贝给原型  
+            pageList[tabControl1.SelectedIndex].RichTextBox1.Select(curRtbStart, len);
+        }
+        ///<summary> 
+        ///自定义方法
         ///设置字体格式：粗体、斜体、下划线
         ///</summary>  
         /// <param name="style">事件触发后传参：字体格式类型</param>  
@@ -137,11 +180,7 @@ namespace EditText
             }
             tempRichTextBox.Rtf = pageList[tabControl1.SelectedIndex].RichTextBox1.SelectedRtf;
             tempRichTextBox.Select(len - 1, 1); //选中副本中的最后一个文字  
-                                                //克隆被选中的文字Font，这个tempFont主要是用来判断  
-                                                //最终被选中的文字是否要加粗、去粗、斜体、去斜、下划线、去下划线  
-            Font tempFont = (Font)tempRichTextBox.SelectionFont.Clone();
-
-            //清空2和3  
+            Font tempFont = (Font)tempRichTextBox.SelectionFont.Clone();//克隆被选中的文字Font，这个tempFont主要是用来判断  
             for (int i = 0; i < len; i++)
             {
                 tempRichTextBox.Select(tempRtbStart + i, 1);  //每次选中一个，逐个进行加粗或去粗  

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace EditText
@@ -21,7 +22,9 @@ namespace EditText
 
         public Page(int tabCount, string fileName, string rootFileName)
         {
-            this.pathAndFileName = rootFileName; 
+            this.pathAndFileName = rootFileName;
+            this.safeFileName = fileName;
+
             this.TabPage1 = new TabPage
             {
                 Location = new Point(4, 25),
@@ -37,7 +40,7 @@ namespace EditText
                 BorderStyle = BorderStyle.None,
                 Location = new Point(1, 1),
                 Name = "richTextBox" + tabCount,
-                Size = new Size(460, 600),
+                Size = new Size(460, 590),
                 TabIndex = 5,
                 Text = "",
                 Multiline = true,
@@ -47,6 +50,7 @@ namespace EditText
             this.TabPage1.Controls.Add(this.RichTextBox1);
             //richTextBox加载文件
             this.RichTextBox1.LoadFile(this.pathAndFileName, RichTextBoxStreamType.PlainText);
+            this.RichTextBox1.SelectionStart = RichTextBox1.TextLength;
         }
         public TabControl creatTabControl()
         {

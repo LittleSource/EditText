@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icons8_Microsoft_Word_2.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tools.cs" />
     <Compile Include="FileOperation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -146,6 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8_Italic_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons8_Microsoft_Word_1.ico" />
+    <Content Include="icons8_Microsoft_Word_2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

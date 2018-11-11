@@ -22,7 +22,7 @@ namespace EditText
         }
         private void toolStrip2_Paint(object sender, PaintEventArgs e)
         {
-            Rectangle rect = new Rectangle(0, 0, this.toolStrip1.Width - 50, this.toolStrip1.Height - 4);
+            Rectangle rect = new Rectangle(0, 0, this.toolStrip1.Width - 320, this.toolStrip1.Height - 4);
             e.Graphics.SetClip(rect);
         }
         private void ToolStripMenuItem_Click(object sender, EventArgs e)
