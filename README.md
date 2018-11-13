@@ -2,7 +2,8 @@
 >## 说明
 
 本软件仅供学习参考使用</br>
-因本人技术有限 And RichTextBox本身的几处bug,导致项目代码量比较大。
+因本人技术有限 和 RichTextBox本身的几处bug,导致项目代码量比较大。</br>
+</br>**菜单扩展下面有惊喜哦，嘿嘿嘿**</br></br>
 
 ![Image text](https://raw.githubusercontent.com/LittleSource/EditText/master/example1.jpg)
 </br>
@@ -16,3 +17,4 @@
 2. 如果选择了两个不同字体的字改变字号时程序就崩溃(已解决)
 3. 某种情况下选择加粗、下划线、斜体时程序就崩溃(已解决)
 4. ...
+5. 不想写了  总之很多
