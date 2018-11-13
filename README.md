@@ -4,9 +4,9 @@
 本软件仅供学习参考使用</br>
 因本人技术有限 And RichTextBox本身的几处bug,导致项目代码量比较大。
 
-![Image text](https://github.com/LittleSource/EditText/example1.jpg)
+![Image text](https://raw.githubusercontent.com/LittleSource/EditText/master/example1.jpg)
 </br>
-![Image text](https://github.com/LittleSource/EditText/example2.jpg)
+![Image text](https://raw.githubusercontent.com/LittleSource/EditText/master/example2.jpg)
 >## 特色
 #### 1. 仿Word2016风格设计软件界面
 #### 2. 采用多页面，能够在一个tabcontrol里自动装多个tabpage与richbox
