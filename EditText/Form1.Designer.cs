@@ -61,8 +61,11 @@ namespace EditText
             this.自动换行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打印ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.运行命令ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.彩蛋ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.打印ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助HToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.获取更多帮助信息MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
@@ -317,7 +320,7 @@ namespace EditText
             this.自动保存ToolStripMenuItem.Name = "自动保存ToolStripMenuItem";
             this.自动保存ToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
             this.自动保存ToolStripMenuItem.Text = "自动保存";
-            this.自动保存ToolStripMenuItem.Click += new System.EventHandler(this.保存ToolStripMenuItem_Click);
+            this.自动保存ToolStripMenuItem.Click += new System.EventHandler(this.自动保存ToolStripMenuItem_Click);
             // 
             // 格式ToolStripMenuItem
             // 
@@ -361,6 +364,7 @@ namespace EditText
             // 
             this.打印ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.运行命令ToolStripMenuItem,
+            this.彩蛋ToolStripMenuItem1,
             this.打印ToolStripMenuItem1});
             this.打印ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
             this.打印ToolStripMenuItem.ForeColor = System.Drawing.Color.White;
@@ -375,6 +379,14 @@ namespace EditText
             this.运行命令ToolStripMenuItem.Text = "Cmd运行(&C)";
             this.运行命令ToolStripMenuItem.Click += new System.EventHandler(this.运行命令ToolStripMenuItem_Click);
             // 
+            // 彩蛋ToolStripMenuItem1
+            // 
+            this.彩蛋ToolStripMenuItem1.Image = global::EditText.Properties.Resources.dan;
+            this.彩蛋ToolStripMenuItem1.Name = "彩蛋ToolStripMenuItem1";
+            this.彩蛋ToolStripMenuItem1.Size = new System.Drawing.Size(203, 28);
+            this.彩蛋ToolStripMenuItem1.Text = "彩蛋";
+            this.彩蛋ToolStripMenuItem1.Click += new System.EventHandler(this.彩蛋ToolStripMenuItem1_Click);
+            // 
             // 打印ToolStripMenuItem1
             // 
             this.打印ToolStripMenuItem1.Name = "打印ToolStripMenuItem1";
@@ -385,11 +397,28 @@ namespace EditText
             // 
             // 帮助HToolStripMenuItem
             // 
+            this.帮助HToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.关于AToolStripMenuItem,
+            this.获取更多帮助信息MToolStripMenuItem});
             this.帮助HToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F);
             this.帮助HToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.帮助HToolStripMenuItem.Name = "帮助HToolStripMenuItem";
             this.帮助HToolStripMenuItem.Size = new System.Drawing.Size(81, 27);
             this.帮助HToolStripMenuItem.Text = "帮助(&H)";
+            // 
+            // 关于AToolStripMenuItem
+            // 
+            this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(251, 28);
+            this.关于AToolStripMenuItem.Text = "关于(&A)...";
+            this.关于AToolStripMenuItem.Click += new System.EventHandler(this.关于AToolStripMenuItem_Click);
+            // 
+            // 获取更多帮助信息MToolStripMenuItem
+            // 
+            this.获取更多帮助信息MToolStripMenuItem.Name = "获取更多帮助信息MToolStripMenuItem";
+            this.获取更多帮助信息MToolStripMenuItem.Size = new System.Drawing.Size(251, 28);
+            this.获取更多帮助信息MToolStripMenuItem.Text = "获取更多帮助信息(&M)";
+            this.获取更多帮助信息MToolStripMenuItem.Click += new System.EventHandler(this.获取更多帮助信息MToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -788,6 +817,9 @@ namespace EditText
         private System.Windows.Forms.ToolStripMenuItem 运行命令ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 打印ToolStripMenuItem1;
         private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.ToolStripMenuItem 关于AToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 获取更多帮助信息MToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 彩蛋ToolStripMenuItem1;
     }
 }
 

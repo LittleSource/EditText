@@ -28,7 +28,17 @@ namespace EditText
         /// </summary>
         private void label2_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if(tabCount == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                for(int i = pageList.Count - 1; i >= 0; i--)
+                {
+                    closePage(i);
+                }
+            }
         }
         /// <summary>
         /// 最小化
@@ -69,21 +79,14 @@ namespace EditText
             if (issetpage())
             {
                 int index = tabControl1.SelectedIndex;
-                tabControl1.TabPages.Remove(pageList[index].TabPage1);
-                pageList.Remove(pageList[index]);
-                if(tabCount > 0)
-                    tabCount--;
+                closePage(index);
             }
         }
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (issetpage())
             {
-                Page page = pageList[tabControl1.SelectedIndex];
-                if (!file.saveFile(page.RichTextBox1, page.PathAndFileName))
-                {
-                    MessageBox.Show("保存失败！");
-                }
+                savePage(tabControl1.SelectedIndex);
             }
         }
         private void 另存为ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,6 +151,22 @@ namespace EditText
             if (issetpage())
             {
                 this.pageList[tabControl1.SelectedIndex].RichTextBox1.Redo();
+            }
+        }
+        private void 自动保存ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (issetpage())
+            {
+                if (this.自动保存ToolStripMenuItem.Checked)
+                {
+                    this.自动保存ToolStripMenuItem.Checked = false;
+                }
+                else
+                {
+                    if (!pageList[tabControl1.SelectedIndex].Issave)
+                        savePage(tabControl1.SelectedIndex);
+                    this.自动保存ToolStripMenuItem.Checked = true;
+                }
             }
         }
 
@@ -215,14 +234,47 @@ namespace EditText
                 }
             }
         }
+        private void 彩蛋ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+        }
+
+        /// <summary>
+        /// 帮助菜单下的相关操作
+        /// </summary>
+        private void 关于AToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+        }
+        private void 获取更多帮助信息MToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string ymkjUrl = "http://www.ym998.cn";
+            System.Diagnostics.Process.Start("iexplore.exe", ymkjUrl);
+        }
 
         /// <summary>
         /// 底部状态栏相关操作
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void RichTextBox1_TextChanged(object sender, EventArgs e)
         {
+            if (issetpage())
+            {
+                if (this.自动保存ToolStripMenuItem.Checked)
+                {
+                    savePage(tabControl1.SelectedIndex);
+                }
+                else
+                {
+                    if (pageList[tabControl1.SelectedIndex].Issave)
+                    {
+                        //设置为未保存状态
+                        pageList[tabControl1.SelectedIndex].Issave = false;
+                        pageList[tabControl1.SelectedIndex].TabPage1.Text += '*';
+                    }
+                }
+            }
             countWord();
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -286,6 +338,41 @@ namespace EditText
             {
                 return true;
             }
+        }
+        private void savePage(int index)
+        {
+            Page page = pageList[index];
+            if (!file.saveFile(page.RichTextBox1, page.PathAndFileName))
+            {
+                MessageBox.Show("保存失败！");
+                return;
+            }
+            else
+            {
+                if (!自动保存ToolStripMenuItem.Checked)
+                {
+                    //设置为保存状态
+                    pageList[index].Issave = true;
+                    pageList[index].TabPage1.Text = pageList[tabControl1.SelectedIndex].TabPage1.Text.Remove(pageList[tabControl1.SelectedIndex].TabPage1.Text.Length - 1, 1);
+                }
+            }
+        }
+        private void closePage(int index)
+        {
+            if (pageList[index].Issave == false)
+            {
+                DialogResult result = MessageBox.Show(pageList[index].TabPage1.Text.Remove(pageList[index].TabPage1.Text.Length - 1, 1) + "还未保存，是否保存？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(result == DialogResult.Yes)
+                {
+                    savePage(index);
+                }
+            }
+            if (pageList.Count == 1)
+                Application.Exit();
+            tabControl1.TabPages.Remove(pageList[index].TabPage1);
+            pageList.Remove(pageList[index]);
+            if (tabCount > 0)
+                tabCount--;
         }
     }
 }

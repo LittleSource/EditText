@@ -15,15 +15,18 @@ namespace EditText
         private TabPage tabPage1;
         private string safeFileName;
         private string pathAndFileName;
+        private bool issave;
         public RichTextBox RichTextBox1 { get => richTextBox1; set => richTextBox1 = value; }
         public TabPage TabPage1 { get => tabPage1; set => tabPage1 = value; }
         public string SafeFileName { get => safeFileName; set => safeFileName = value; }
         public string PathAndFileName { get => pathAndFileName; set => pathAndFileName = value; }
+        public bool Issave { get => issave; set => issave = value; }
 
         public Page(int tabCount, string fileName, string rootFileName)
         {
             this.pathAndFileName = rootFileName;
             this.safeFileName = fileName;
+            this.Issave = true;
 
             this.TabPage1 = new TabPage
             {

@@ -8,3 +8,5 @@ C:\Users\yuange\source\repos\EditText\EditText\obj\Debug\EditText.csproj.Generat
 C:\Users\yuange\source\repos\EditText\EditText\obj\Debug\EditText.csproj.CoreCompileInputs.cache
 C:\Users\yuange\source\repos\EditText\EditText\obj\Debug\EditText.exe
 C:\Users\yuange\source\repos\EditText\EditText\obj\Debug\EditText.pdb
+C:\Users\yuange\source\repos\EditText\EditText\obj\Debug\EditText.Form3.resources
+C:\Users\yuange\source\repos\EditText\EditText\obj\Debug\EditText.Form2.resources

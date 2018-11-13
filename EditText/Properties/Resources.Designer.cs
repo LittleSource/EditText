@@ -83,9 +83,39 @@ namespace EditText.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _5454 {
+            get {
+                object obj = ResourceManager.GetObject("_5454", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap BG {
             get {
                 object obj = ResourceManager.GetObject("BG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap dan {
+            get {
+                object obj = ResourceManager.GetObject("dan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap github {
+            get {
+                object obj = ResourceManager.GetObject("github", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +213,16 @@ namespace EditText.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_Microsoft_Word_2 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Microsoft_Word_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_New_File_50px {
             get {
                 object obj = ResourceManager.GetObject("icons8_New_File_50px", resourceCulture);
@@ -236,6 +276,16 @@ namespace EditText.Properties {
         internal static System.Drawing.Bitmap icons8_Underline_50px {
             get {
                 object obj = ResourceManager.GetObject("icons8_Underline_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap logo_new {
+            get {
+                object obj = ResourceManager.GetObject("logo_new", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
